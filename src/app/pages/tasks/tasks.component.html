@@ -1,0 +1,43 @@
+<div class="bg-light bg-gradient">
+    <div class="container min-vh-100 pt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h5 class="card-title">My To-Do List</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngIf="tasks.length == 0">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h5>No tasks around here</h5>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item" *ngFor="let task of tasks">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-10">
+                            <input type="checkbox" class="form-check-input me-2" (change)="toggleTask(task)" [checked]="task.done"> 
+                            <label [class.done]="task.done">{{task.title}}</label>
+                        </div>
+                        <div class="col-12 col-md-2 text-end">
+                            <div class="remove-button" (click)="deleteTask(task.id)">(remove task)</div>
+                        </div>
+                    </div>                    
+                </li>                     
+            </ul>
+            <div class="card-body">
+                <div class="row" [formGroup]="formTasks">
+                    <div class="col-12 col-md-10" [class.invalid]="alertForm">
+                        <input type="text" class="form-control" placeholder="Add new task" [(ngModel)]="newTask" formControlName="title" required>
+                        <div class="invalid-feedback">
+                            Please write a task.
+                          </div>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <button class="btn btn-primary w-100" type="submit" (click)="validate()" [disabled]="!formTasks.valid">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

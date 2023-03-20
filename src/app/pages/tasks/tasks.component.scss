@@ -1,0 +1,18 @@
+.done {
+    text-decoration: line-through;
+}
+
+.invalid {
+    input {
+        border: 1px solid red;
+    }
+    .invalid-feedback {
+        display: block;
+    }
+}
+
+.remove-button {
+    font-size: 12px;
+    color: #8d8d8d;
+    cursor: pointer;
+}
